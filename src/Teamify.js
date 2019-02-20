@@ -5,6 +5,7 @@ import namor from 'namor';
 import 'bulma/css/bulma.min.css';
 
 export function makeTeams({ names, numberOfTeams, setTeams }) {
+	numberOfTeams = numberOfTeams || 1;
 	const shuffledNames = _shuffle(names);
 	const teams = shuffledNames.reduce((teams, name, i) => {
 		const teamIndex = i % numberOfTeams;
@@ -64,7 +65,11 @@ export default function Teamify() {
 										value={numberOfTeams}
 										onChange={e => {
 											const newNumberOfTeams =
-												e.target.valueAsNumber > 0 ? e.target.valueAsNumber : 1;
+												e.target.value === ''
+													? e.target.value
+													: e.target.valueAsNumber > 0
+													? e.target.valueAsNumber
+													: 1;
 											setNumberOfTeams(newNumberOfTeams);
 											makeTeams({
 												names,
@@ -89,6 +94,16 @@ export default function Teamify() {
 						</div>
 					</div>
 				</form>
+
+				{names.length === 0 && (
+					<div className="columns">
+						<div className="column">
+							<div className="notification">
+								Add some names to make some teams!
+							</div>
+						</div>
+					</div>
+				)}
 
 				{names.length > 0 && (
 					<div className="columns">
