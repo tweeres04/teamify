@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Teamify from './Teamify';
+import Teamify from './Teamify/Teamify';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<Teamify />, document.getElementById('root'));

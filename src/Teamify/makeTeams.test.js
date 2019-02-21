@@ -1,12 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Teamify, { makeTeams } from './Teamify';
-
-it('renders without crashing', () => {
-	const div = document.createElement('div');
-	ReactDOM.render(<Teamify />, div);
-	ReactDOM.unmountComponentAtNode(div);
-});
+import makeTeams from './makeTeams';
 
 test('makeTeams handles team number close to number of players', () => {
 	const names = ['Ty', 'Nad', 'Coose', 'Scara', 'Fox', 'Mo', 'Lauren'];
