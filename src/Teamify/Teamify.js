@@ -33,6 +33,19 @@ function RemakeTeamsButton({ names, numberOfTeams, setTeams }) {
 	);
 }
 
+function Footer() {
+	return (
+		<footer className="footer">
+			<div className="content has-text-centered">
+				<p>&copy; Tweeres Software</p>
+				<p>
+					Icon by <a href="https://www.flaticon.com/">Flaticon</a>
+				</p>
+			</div>
+		</footer>
+	);
+}
+
 export default function Teamify() {
 	const [names, setNames] = useState([]);
 	const [newName, setNewName] = useState('');
@@ -40,44 +53,47 @@ export default function Teamify() {
 	const [teams, setTeams] = useState([]);
 
 	return (
-		<div className="section">
-			<div className="container">
-				<h1 className="title">Teamify</h1>
+		<>
+			<div className="section">
+				<div className="container">
+					<h1 className="title">Teamify</h1>
 
-				<SetupForm
-					names={names}
-					setNames={setNames}
-					newName={newName}
-					setNewName={setNewName}
-					numberOfTeams={numberOfTeams}
-					setNumberOfTeams={setNumberOfTeams}
-					teams={teams}
-					setTeams={setTeams}
-					makeTeams={makeTeams}
-				/>
-
-				{names.length > 0 && (
-					<NameList
+					<SetupForm
 						names={names}
 						setNames={setNames}
+						newName={newName}
+						setNewName={setNewName}
 						numberOfTeams={numberOfTeams}
+						setNumberOfTeams={setNumberOfTeams}
+						teams={teams}
 						setTeams={setTeams}
 						makeTeams={makeTeams}
 					/>
-				)}
 
-				{teams.length > 0 && <TeamList teams={teams} />}
+					{names.length > 0 && (
+						<NameList
+							names={names}
+							setNames={setNames}
+							numberOfTeams={numberOfTeams}
+							setTeams={setTeams}
+							makeTeams={makeTeams}
+						/>
+					)}
 
-				{teams.length > 0 && (
-					<RemakeTeamsButton
-						names={names}
-						numberOfTeams={numberOfTeams}
-						setTeams={setTeams}
-					/>
-				)}
+					{teams.length > 0 && <TeamList teams={teams} />}
 
-				{names.length === 0 && <EmptyState />}
+					{teams.length > 0 && (
+						<RemakeTeamsButton
+							names={names}
+							numberOfTeams={numberOfTeams}
+							setTeams={setTeams}
+						/>
+					)}
+
+					{names.length === 0 && <EmptyState />}
+				</div>
 			</div>
-		</div>
+			<Footer />
+		</>
 	);
 }
