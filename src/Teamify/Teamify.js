@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'bulma/css/bulma.min.css';
+import './teamify.scss';
 
 import makeTeams from './makeTeams';
 import SetupForm from './SetupForm';
@@ -68,7 +68,13 @@ export default function Teamify() {
 
 				{teams.length > 0 && <TeamList teams={teams} />}
 
-				{teams.length > 0 && <RemakeTeamsButton />}
+				{teams.length > 0 && (
+					<RemakeTeamsButton
+						names={names}
+						numberOfTeams={numberOfTeams}
+						setTeams={setTeams}
+					/>
+				)}
 
 				{names.length === 0 && <EmptyState />}
 			</div>
