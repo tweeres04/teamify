@@ -37,7 +37,7 @@ function Footer() {
 	return (
 		<footer className="footer">
 			<div className="content has-text-centered">
-				<p>&copy; Tweeres Software</p>
+				<p><a href="https://tweeres.ca">&copy; Tyler Weeres</a></p>
 				<p>
 					Icon by <a href="https://www.flaticon.com/">Flaticon</a>
 				</p>
