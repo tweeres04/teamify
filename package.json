@@ -3,12 +3,13 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"bulma": "^0.7.4",
-		"lodash": "^4.17.11",
-		"namor": "^1.1.1",
-		"react": "^16.8.2",
-		"react-dom": "^16.8.2",
-		"react-scripts": "2.1.5"
+		"bulma": "^0.9.2",
+		"lodash": "^4.17.21",
+		"namor": "^2.0.3",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-scripts": "4.0.3",
+		"sass": "^1.32.13"
 	},
 	"scripts": {
 		"clean": "rm -rf build",
@@ -27,8 +28,5 @@
 		"not dead",
 		"not ie <= 11",
 		"not op_mini all"
-	],
-	"devDependencies": {
-		"node-sass": "^4.11.0"
-	}
+	]
 }

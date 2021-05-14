@@ -12,7 +12,7 @@ export default function makeTeams({ names, numberOfTeams, setTeams }) {
 	}, Array.from({ length: Math.min(numberOfTeams, names.length) }).fill([]));
 
 	const teamsWithNames = teams.map(t => ({
-		name: _startCase(namor.generate({ numbers: 0, char: ' ', manly: true })),
+		name: _startCase(namor.generate({ numbers: 0, char: ' ', saltLength: 0, subset: 'manly' })),
 		team: t
 	}));
 
