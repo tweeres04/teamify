@@ -3,12 +3,12 @@
 	"name": "Teamify",
 	"icons": [
 		{
-			"src": "team.png",
+			"src": "/team.png",
 			"sizes": "512x512",
 			"type": "image/png"
 		}
 	],
-	"start_url": ".",
+	"start_url": "/app",
 	"display": "standalone",
 	"theme_color": "#6ABBEB",
 	"background_color": "#6ABBEB"

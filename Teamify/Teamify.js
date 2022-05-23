@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import './teamify.scss';
+import React, { useState } from 'react'
 
-import makeTeams from './makeTeams';
-import SetupForm from './SetupForm';
-import NameList from './NameList';
-import TeamList from './TeamList';
+import makeTeams from './makeTeams'
+import SetupForm from './SetupForm'
+import NameList from './NameList'
+import TeamList from './TeamList'
 
 function EmptyState() {
 	return (
@@ -13,7 +12,7 @@ function EmptyState() {
 				<div className="notification">Add some names to make some teams!</div>
 			</div>
 		</div>
-	);
+	)
 }
 
 function RemakeTeamsButton({ names, numberOfTeams, setTeams }) {
@@ -23,34 +22,36 @@ function RemakeTeamsButton({ names, numberOfTeams, setTeams }) {
 				<button
 					className="button"
 					onClick={() => {
-						makeTeams({ names, numberOfTeams, setTeams });
+						makeTeams({ names, numberOfTeams, setTeams })
 					}}
 				>
 					Remake Teams
 				</button>
 			</div>
 		</div>
-	);
+	)
 }
 
 function Footer() {
 	return (
 		<footer className="footer">
 			<div className="content has-text-centered">
-				<p><a href="https://tweeres.ca">&copy; Tyler Weeres</a></p>
+				<p>
+					<a href="https://tweeres.ca">&copy; Tyler Weeres</a>
+				</p>
 				<p>
 					Icon by <a href="https://www.flaticon.com/">Flaticon</a>
 				</p>
 			</div>
 		</footer>
-	);
+	)
 }
 
 export default function Teamify() {
-	const [names, setNames] = useState([]);
-	const [newName, setNewName] = useState('');
-	const [numberOfTeams, setNumberOfTeams] = useState(2);
-	const [teams, setTeams] = useState([]);
+	const [names, setNames] = useState([])
+	const [newName, setNewName] = useState('')
+	const [numberOfTeams, setNumberOfTeams] = useState(2)
+	const [teams, setTeams] = useState([])
 
 	return (
 		<>
@@ -95,5 +96,5 @@ export default function Teamify() {
 			</div>
 			<Footer />
 		</>
-	);
+	)
 }
