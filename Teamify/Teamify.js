@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import makeTeams from './makeTeams'
 import SetupForm from './SetupForm'
@@ -47,11 +47,55 @@ function Footer() {
 	)
 }
 
-export default function Teamify() {
+function useSettings() {
 	const [names, setNames] = useState([])
-	const [newName, setNewName] = useState('')
+	const [loaded, setLoaded] = useState(false)
 	const [numberOfTeams, setNumberOfTeams] = useState(2)
+
+	function serializeSettings(names, numberOfTeams) {
+		return JSON.stringify({ names, numberOfTeams })
+	}
+
+	function deserializeSettings(settingsJsonString) {
+		return settingsJsonString
+			? JSON.parse(settingsJsonString)
+			: { names: [], numberOfTeams: 2 }
+	}
+
+	useEffect(() => {
+		if (!loaded) {
+			let storageResult = localStorage.getItem('settings')
+			const { names, numberOfTeams } = deserializeSettings(storageResult)
+			setNames(names)
+			setNumberOfTeams(numberOfTeams)
+			setLoaded(true)
+		}
+	}, [loaded, setLoaded, setNames, setNumberOfTeams])
+
+	useEffect(() => {
+		localStorage.setItem('settings', serializeSettings(names, numberOfTeams))
+	}, [names, numberOfTeams])
+
+	function clearNames() {
+		setNames([])
+	}
+
+	return { names, setNames, clearNames, numberOfTeams, setNumberOfTeams }
+}
+
+export default function Teamify() {
+	const { names, setNames, clearNames, numberOfTeams, setNumberOfTeams } =
+		useSettings()
+	const [newName, setNewName] = useState('')
 	const [teams, setTeams] = useState([])
+
+	useEffect(() => {
+		makeTeams({
+			names,
+			numberOfTeams,
+			setTeams,
+		})
+	}, [names, numberOfTeams])
 
 	return (
 		<>
@@ -75,9 +119,7 @@ export default function Teamify() {
 						<NameList
 							names={names}
 							setNames={setNames}
-							numberOfTeams={numberOfTeams}
-							setTeams={setTeams}
-							makeTeams={makeTeams}
+							clearNames={clearNames}
 						/>
 					)}
 
