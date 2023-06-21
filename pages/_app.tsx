@@ -1,9 +1,34 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { useState, useEffect } from 'react'
 
 import '../styles/teamify.scss'
 
+export interface BeforeInstallPromptEvent extends Event {
+	prompt: () => void
+}
+
+function useDeferredInstallPrompt() {
+	const [deferredPrompt, setDeferredPrompt] =
+		useState<BeforeInstallPromptEvent>()
+	useEffect(() => {
+		window.addEventListener('beforeinstallprompt', (e) => {
+			e.preventDefault()
+			setDeferredPrompt(e as BeforeInstallPromptEvent)
+		})
+	}, [])
+
+	return deferredPrompt
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
+	const deferredInstallPrompt = useDeferredInstallPrompt()
+
+	pageProps = {
+		...pageProps,
+		deferredInstallPrompt,
+	}
+
 	return (
 		<>
 			<Head>
